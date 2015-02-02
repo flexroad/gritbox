@@ -1,8 +1,9 @@
 {
-	"name": "gritbox/gritbox",
-	"description": "Gritbox is a pre-packaged Nette Framework project, basic configured structure for your application.",
+	"name": "nette/sandbox",
+	"description": "The sandbox is a pre-packaged Nette Framework project, basic configured structure for your application.",
+	"homepage": "http://nette.org",
 	"type": "project",
-	"license": ["Unlicense"],
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
 	"authors": [
 		{
 			"name": "David Grudl",
@@ -11,18 +12,21 @@
 		{
 			"name": "Nette Community",
 			"homepage": "http://nette.org/contributors"
-		},
-		{
-			"name": "Jiri Zraly"
 		}
 	],
 	"require": {
 		"php": ">= 5.3.7",
-		"nette/nette": "~2.3",
+		"nette/nette": "~2.3.0",
 		"dg/adminer-custom": "~1.5"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "beta",
+	"prefer-stable": true,
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.3-dev"
+		}
+	}
 }
