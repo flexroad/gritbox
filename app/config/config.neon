@@ -3,7 +3,8 @@
 # http://nette.org/security-warning
 #
 parameters:
-
+	development: false
+	version: 1 # increase this number, if new release is pushed
 
 php:
 	date.timezone: Europe/Prague

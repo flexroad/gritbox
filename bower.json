@@ -1,0 +1,9 @@
+{
+  "name": "Gritbox",
+  "version": "1.0",
+  "dependencies": {
+    "jquery": "1.11.1",
+    "bootstrap": "3.3.1",
+    "nette.ajax.js": "1.2.3-RC1"
+  }
+}
