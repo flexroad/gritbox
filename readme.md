@@ -1,21 +1,26 @@
-Nette Sandbox
+Gritbox - a Nette project starter
 =============
 
-Sandbox is a pre-packaged and pre-configured Nette Framework application
+Gritbox is a pre-packaged and pre-configured Nette Framework application
 that you can use as the skeleton for your new applications.
 
-[Nette](http://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
+It is based on these technologies:
 
+- PHP
+- Nette (PHP framework)
+- Bootstrap (CSS framework)
+- Grunt (Javascript Task Runner)
+- LESS (CSS pre-processor)
+- jQuery (Javasript framework)
+- Bower (Package manager)
 
 Installing
 ----------
 
-The best way to install Sandbox is using Composer. If you don't have Composer yet, download
+The best way to install Gritbox is using Composer. If you don't have Composer yet, download
 it following [the instructions](http://doc.nette.org/composer). Then use command:
 
-		composer create-project nette/sandbox my-app
+		composer create-project gritbox/gritbox my-app
 		cd my-app
 
 Make directories `temp` and `log` writable. Navigate your browser
@@ -26,6 +31,20 @@ then visit `http://localhost:8888` in your browser.
 It is CRITICAL that whole `app`, `log` and `temp` directories are NOT accessible
 directly via a web browser! See [security warning](http://nette.org/security-warning).
 
+Grunt and Grunt plugins are installed and managed via npm, the Node.js package manager. So
+be sure, you have them installed. Also, you have to have installed Grunt and Bower.
+
+After you have Gritbox downloaded by Composer, run
+
+		npm install
+
+which will install all Grunt packages into `node_modules` directory.
+
+Then run
+
+		bower install
+
+which will install CSS and JS libraires into `www/components` directory.
 
 License
 -------
@@ -33,3 +52,5 @@ License
 - jQuery: MIT License (https://jquery.org/license)
 - Adminer: Apache License 2.0 or GPL 2 (http://www.adminer.org)
 - Sandbox: The Unlicense (http://unlicense.org)
+- Grunt: MIT License (https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT)
+- Bootstrap: MIT License (https://github.com/twbs/bootstrap/blob/master/LICENSE)

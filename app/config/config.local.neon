@@ -1,5 +1,5 @@
 parameters:
-
+	development: true # this parameter has to be FALSE on production
 
 database:
 	dsn: 'mysql:host=127.0.0.1;dbname=test'
