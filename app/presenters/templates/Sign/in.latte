@@ -1,6 +1,12 @@
 {block content}
-<h1 n:block=title>Sign in</h1>
 
-{control signInForm}
-
-{* or use {include '../components/form.latte', form => signInForm} *}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h2 n:block="title" class="text-center">Log In</h2>
+		{include '../../../forms/templates/SignInForm.latte', form => signInForm}
+		<hr/>
+		<p>
+			<a n:href="Sign:up">Register</a>
+		</p>
+	</div>
+</div>

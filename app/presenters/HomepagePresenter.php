@@ -11,10 +11,17 @@ use Nette,
  */
 class HomepagePresenter extends BasePresenter
 {
+	protected function startup()
+	{
+		parent::startup();
+		$this->mustBeLoggedIn();
+	}
 
 	public function renderDefault()
 	{
 		$this->template->anyVariable = 'any value';
 	}
+
+
 
 }
