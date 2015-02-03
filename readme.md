@@ -14,6 +14,12 @@ It is based on these technologies:
 - jQuery (Javasript framework)
 - Bower (Package manager)
 
+Features
+--------
+
+- User handling: Login, Register, Forgotten password
+- Flashmessage UX (stay always visible)
+
 Installing
 ----------
 
@@ -36,13 +42,13 @@ be sure, you have them installed. Also, you have to have installed Grunt and Bow
 
 After you have Gritbox downloaded by Composer, run
 
-		npm install
+	npm install
 
 which will install all Grunt packages into `node_modules` directory.
 
 Then run
 
-		bower install
+	bower install
 
 which will install CSS and JS libraires into `www/components` directory.
 
