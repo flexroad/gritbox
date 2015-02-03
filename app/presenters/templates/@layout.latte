@@ -33,6 +33,7 @@
 		<script src="{$basePath}/components/bootstrap/js/collapse.js" type="text/javascript"></script>
 		<script src="{$basePath}/components/nette.ajax.js/nette.ajax.js" type="text/javascript"></script>
 		<script src="//nette.github.io/resources/js/netteForms.min.js" type="text/javascript"></script>
+		<script src="{$basePath}/js/topfix.js" type="text/javascript"></script>
 		<script src="{$basePath}/js/main.js" type="text/javascript"></script>
 		<!-- endbuild -->
 	{else}
@@ -46,19 +47,25 @@
 </head>
 
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
 
 	{if $user->isLoggedIn()}
 		{include './@header.latte'}
 	{/if}
 	<div class="container">
+
+		<div class="topfix" data-topfix-offset="20">
+			<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
+			<div class="alert alert-danger">ahoj</div>
+		</div>
+
 		{include content}
 	</div>
 
 
 
 	{block scripts}
-		<script src="{$basePath}/js/main.js"></script>
+
 	{/block}
 </body>
 </html>

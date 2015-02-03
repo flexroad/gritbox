@@ -16,7 +16,6 @@ module.exports = (grunt) ->
           compress: false
         files: # todo add all necessary files
           "www/style/main.css": [
-            "www/style/bootstrap.less",
             "www/style/main.less"
           ]
 
