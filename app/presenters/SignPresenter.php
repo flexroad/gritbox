@@ -25,10 +25,11 @@ class SignPresenter extends BasePresenter
 	 */
 	protected function createComponentSignInForm()
 	{
-		$form = $this->signInFormFactory->create(function ($form) {
+		$form = $this->signInFormFactory->create();
+		$form->onSuccess[] = function ($form) {
 			$form->getPresenter()->redirect('Homepage:');
-		});
-		return new TemplateControl($form, __DIR__ . '/../forms/templates/SignInForm.latte');
+		};
+		return $form;
 	}
 
 
@@ -38,10 +39,11 @@ class SignPresenter extends BasePresenter
 	 */
 	protected function createComponentSignUpForm()
 	{
-		$form = $this->signUpFormFactory->create(function ($form) {
+		$form = $this->signUpFormFactory->create();
+		$form->onSuccess[] = function ($form) {
 			$form->getPresenter()->redirect('Sign:in');
-		});
-		return new TemplateControl($form, __DIR__ . '/../forms/templates/SignUpForm.latte');
+		};
+		return $form;
 	}
 
 
