@@ -18,7 +18,6 @@ class SignInFormFactory extends Nette\Object
 		$this->user = $user;
 	}
 
-
 	/**
 	 * @return Form
 	 */
@@ -34,6 +33,11 @@ class SignInFormFactory extends Nette\Object
 		$form->addSubmit('send', 'Sign in');
 
 		$form->onSuccess[] = array($this, 'formSucceeded');
+
+		$form->setRenderer(new \App\Forms\Renderer(__DIR__ . '/templates/SignInForm.latte'));
+
+		$form->onSuccess[] = array($this, 'formSucceeded');
+
 		return $form;
 	}
 
