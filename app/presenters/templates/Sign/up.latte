@@ -1,0 +1,13 @@
+{block content}
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h2 n:block="title" class="text-center">Register</h2>
+		{include '../../../forms/templates/SignUpForm.latte', form => signUpForm}
+		<hr/>
+		<p>
+			<a n:href="Sign:in">Log In</a>
+		</p>
+	</div>
+</div>
+

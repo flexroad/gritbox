@@ -7,7 +7,7 @@ use Nette,
 	Nette\Security\User;
 
 
-class SignFormFactory extends Nette\Object
+class SignInFormFactory extends Nette\Object
 {
 	/** @var User */
 	private $user;
@@ -25,13 +25,11 @@ class SignFormFactory extends Nette\Object
 	public function create()
 	{
 		$form = new Form;
-		$form->addText('username', 'Username:')
+		$form->addText('email', 'Email:')
 			->setRequired('Please enter your username.');
 
 		$form->addPassword('password', 'Password:')
 			->setRequired('Please enter your password.');
-
-		$form->addCheckbox('remember', 'Keep me signed in');
 
 		$form->addSubmit('send', 'Sign in');
 
@@ -42,14 +40,10 @@ class SignFormFactory extends Nette\Object
 
 	public function formSucceeded($form, $values)
 	{
-		if ($values->remember) {
-			$this->user->setExpiration('14 days', FALSE);
-		} else {
-			$this->user->setExpiration('20 minutes', TRUE);
-		}
+		$this->user->setExpiration('14 days', FALSE);
 
 		try {
-			$this->user->login($values->username, $values->password);
+			$this->user->login($values->email, $values->password);
 		} catch (Nette\Security\AuthenticationException $e) {
 			$form->addError($e->getMessage());
 		}
