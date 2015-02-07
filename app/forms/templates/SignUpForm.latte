@@ -1,31 +1,22 @@
-<form n:name="$form" class="form-horizontal">
+<form n:name="form">
 
 	<div n:if="$form->ownErrors">
 		<div n:foreach="$form->ownErrors as $error" class="alert alert-danger">{$error}</div>
 	</div>
 
 	<div class="form-group">
-		<label n:name="email" class="col-sm-3 control-label">Email:</label>
-		<div class="col-sm-9">
-			<input n:name="email" class="form-control">
-		</div>
+		<label n:name="email">Email:</label>
+		<input n:name="email" class="form-control">
 	</div>
 	<div class="form-group">
-		<label n:name="password" class="col-sm-3 control-label">Password:</label>
-		<div class="col-sm-9">
-			<input n:name="password" class="form-control">
-		</div>
+		<label n:name="password">Password:</label>
+		<input n:name="password" class="form-control">
 	</div>
 	<div class="form-group">
-		<label n:name="name" class="col-sm-3 control-label">Name:</label>
-		<div class="col-sm-9">
-			<input n:name="name" class="form-control">
-		</div>
+		<label n:name="name">Name:</label>
+		<input n:name="name" class="form-control">
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-9">
-			{input send class => 'btn btn-primary'}
-
-		</div>
+		{input send class => 'btn btn-primary'}
 	</div>
 </form>

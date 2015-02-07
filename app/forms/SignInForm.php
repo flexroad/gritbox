@@ -7,11 +7,10 @@ use Nette,
 	Nette\Security\User;
 
 
-class SignInFormFactory extends Nette\Object
+class SignInForm extends BaseForm
 {
 	/** @var User */
 	private $user;
-
 
 	public function __construct(User $user)
 	{
@@ -21,11 +20,11 @@ class SignInFormFactory extends Nette\Object
 	/**
 	 * @return Form
 	 */
-	public function create()
+	public function createComponentForm()
 	{
 		$form = new Form;
 		$form->addText('email', 'Email:')
-			->setRequired('Please enter your username.');
+			->setRequired('Please enter your email.');
 
 		$form->addPassword('password', 'Password:')
 			->setRequired('Please enter your password.');
@@ -34,7 +33,6 @@ class SignInFormFactory extends Nette\Object
 
 		$form->onSuccess[] = array($this, 'formSucceeded');
 
-		$form->setRenderer(new \App\Forms\Renderer(__DIR__ . '/templates/SignInForm.latte'));
 
 		$form->onSuccess[] = array($this, 'formSucceeded');
 
@@ -50,7 +48,19 @@ class SignInFormFactory extends Nette\Object
 			$this->user->login($values->email, $values->password);
 		} catch (Nette\Security\AuthenticationException $e) {
 			$form->addError($e->getMessage());
+			return;
 		}
+
+		$this->onFormSuccess($this);
 	}
 
+
+}
+
+interface ISignInFormFactory
+{
+	/**
+	 * @return \App\Forms\SignInForm
+	 */
+	function create();
 }

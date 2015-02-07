@@ -12,11 +12,14 @@ use Nette,
  */
 class SignPresenter extends BasePresenter
 {
-	/** @var \App\Forms\SignInFormFactory @inject */
+	/** @var \App\Forms\ISignInFormFactory @inject */
 	public $signInFormFactory;
 
-	/** @var \App\Forms\SignUpFormFactory @inject */
+	/** @var \App\Forms\ISignUpFormFactory @inject */
 	public $signUpFormFactory;
+
+	/** @var \App\Forms\ISendPasswordFormFactory @inject */
+	public $sendPasswordFormFactory;
 
 
 	/**
@@ -26,7 +29,7 @@ class SignPresenter extends BasePresenter
 	protected function createComponentSignInForm()
 	{
 		$form = $this->signInFormFactory->create();
-		$form->onSuccess[] = function ($form) {
+		$form->onFormSuccess[] = function ($form) {
 			$form->getPresenter()->redirect('Homepage:');
 		};
 		return $form;
@@ -40,8 +43,21 @@ class SignPresenter extends BasePresenter
 	protected function createComponentSignUpForm()
 	{
 		$form = $this->signUpFormFactory->create();
-		$form->onSuccess[] = function ($form) {
+		$form->onFormSuccess[] = function ($form) {
 			$form->getPresenter()->redirect('Sign:in');
+		};
+		return $form;
+	}
+
+	/**
+	 * Reset password form factory.
+	 * @return Nette\Application\UI\Form
+	 */
+	protected function createComponentSendPasswordForm()
+	{
+		$form = $this->sendPasswordFormFactory->create();
+		$form->onFormSuccess[] = function ($form) {
+			$form->getPresenter()->redirect('Homepage:');
 		};
 		return $form;
 	}
