@@ -5,6 +5,7 @@
 parameters:
 	development: false
 	version: 1 # increase this number, if new release is pushed
+	appUniqueHash: "jHrC5j8V3HDTDx86+#&H109" # Change this hash for your app, 22 chars at least!
 
 php:
 	date.timezone: Europe/Prague
@@ -19,8 +20,14 @@ application:
 session:
 	expiration: 14 days
 
+nette:
+	debugger:
+		bar:
+			- JanDrabek\MailPanel\MailPanel
 
 services:
+	nette.mailer: JanDrabek\MailPanel\SessionMailer
+
 	- App\Model\Managers\UserManager
 
 	- App\Model\Repositories\UserRepository
