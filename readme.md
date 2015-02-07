@@ -19,6 +19,7 @@ Features
 
 - User handling: Login, Register, Forgotten password
 - Flashmessage UX (stay always visible)
+- [MailPanel](https://github.com/repli2dev/nette-mailpanel)
 
 Installing
 ----------

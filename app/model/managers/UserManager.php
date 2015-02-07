@@ -3,6 +3,7 @@
 namespace App\Model\Managers;
 
 
+use App\Model\Entities\UserEntity;
 use Nette,
 	Nette\Utils\Strings,
 	Nette\Security\Passwords,
@@ -67,10 +68,23 @@ class UserManager extends BaseManager implements Nette\Security\IAuthenticator
 			$this->repository->insert([
 				"email" => $email,
 				"password" => Passwords::hash($password),
+				"public_hash" => Nette\Utils\Random::generate(22),
 				"name" => $name,
 			]);
 		} catch (Nette\Database\UniqueConstraintViolationException $e) {
 			throw new DuplicateNameException;
+		}
+	}
+
+	public function getByEmail($email)
+	{
+		$user = $this->repository->findOneBy([
+			'email' => $email
+		]);
+		if ($user) {
+			return new UserEntity($user);
+		} else {
+			return false;
 		}
 	}
 

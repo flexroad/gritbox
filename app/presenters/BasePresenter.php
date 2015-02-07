@@ -11,6 +11,11 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
+
+	/** @var Nette\Mail\IMailer @inject */
+	public $mailer;
+
+
 	protected function beforeRender()
 	{
 		$this->template->parameters = $this->context->parameters;

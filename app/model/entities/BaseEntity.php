@@ -13,8 +13,7 @@ abstract class BaseEntity extends Object
 			if (!isset($row->id)){
 				throw new InvalidStateException('No data for Entity loaded');
 			}
-
-			foreach (get_object_vars($this) as $property) {
+			foreach (get_object_vars($this) as $property => $value) {
 				if (isset($row->$property)) {
 					$this->$property = $row->$property;
 				} else {
