@@ -7,7 +7,7 @@ use Nette,
 	Nette\Application\UI;
 
 
-class SignUpFormFactory extends UI\Control
+class SignUpForm extends BaseForm
 {
 
 	private $userManager;
@@ -20,17 +20,17 @@ class SignUpFormFactory extends UI\Control
 	/**
 	 * @return Form
 	 */
-	public function create($onSuccess = NULL)
+	public function createComponentForm()
 	{
 		$form = new UI\Form;
-		$form->addText('email', 'E-mail:');
-		$form->addText('name', 'Name:');
-		$form->addPassword('password', 'Password:');
+		$form->addText('email', 'E-mail:')
+			->setRequired('Please enter your email.');
+		$form->addText('name', 'Name:')
+			->setRequired('Please enter your name.');
+		$form->addPassword('password', 'Password:')
+			->setRequired('Please enter your password.');
 
 		$form->addSubmit('send', 'Sign up');
-
-		$form->setRenderer(new \App\Forms\Renderer(__DIR__ . '/templates/SignUpForm.latte'));
-
 		$form->onSuccess[] = array($this, 'formSucceeded');
 
 		return $form;
@@ -46,7 +46,19 @@ class SignUpFormFactory extends UI\Control
 			return;
 		}
 
+		$this->onFormSuccess($this);
+
+
 	}
 
 
+}
+
+
+interface ISignUpFormFactory
+{
+	/**
+	 * @return \App\Forms\SignUpForm
+	 */
+	function create();
 }

@@ -25,7 +25,8 @@ services:
 
 	- App\Model\Repositories\UserRepository
 
-	- App\Forms\SignInFormFactory
-	- App\Forms\SignUpFormFactory
+	- App\Forms\ISignInFormFactory
+	- App\Forms\ISignUpFormFactory
+	- App\Forms\ISendPasswordFormFactory
 
 	router: App\RouterFactory::createRouter
