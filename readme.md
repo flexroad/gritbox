@@ -17,9 +17,10 @@ It is based on these technologies:
 Features
 --------
 
-- User handling: Login, Register, Forgotten password
+- Basic user account managing: Login, Register, Reset password
 - Flashmessage UX (stay always visible)
-- [MailPanel](https://github.com/repli2dev/nette-mailpanel)
+- Development:
+	- [MailPanel](https://github.com/repli2dev/nette-mailpanel)
 
 Installing
 ----------
