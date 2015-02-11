@@ -22,6 +22,13 @@ class SignPresenter extends BasePresenter
 	protected $passwordResetRow;
 
 
+	protected function startup()
+	{
+		parent::startup();
+		$this->mustBeLoggedOut();
+	}
+
+
 	public function actionIn($newpasshash = "")
 	{
 
@@ -66,12 +73,5 @@ class SignPresenter extends BasePresenter
 		return $form;
 	}
 
-
-	public function actionOut()
-	{
-		$this->getUser()->logout();
-		$this->flashMessage('You have been signed out.');
-		$this->redirect('in');
-	}
 
 }

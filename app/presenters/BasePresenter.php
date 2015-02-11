@@ -27,11 +27,27 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->template->parameters = $this->context->parameters;
 	}
 
+	/*
+	 * ====== Signals ======
+	 */
+
+	public function handleLogOut()
+	{
+		$this->user->logout();
+		$this->redirect("Sign:in");
+	}
+
 
 	protected function mustBeLoggedIn()
 	{
 		if (!$this->getUser()->isLoggedIn()) {
 			$this->redirect('Sign:in');
+		}
+	}
+	protected function mustBeLoggedOut()
+	{
+		if ($this->getUser()->isLoggedIn()) {
+			$this->redirect('Homepage:default');
 		}
 	}
 
