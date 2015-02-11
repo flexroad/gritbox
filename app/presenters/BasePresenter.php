@@ -16,6 +16,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	/** @var Nette\Mail\IMailer @inject */
 	public $mailer;
 
+	/** @var \App\Model\Repositories\PasswordResetRepository @inject */
+	public $passwordResetRepository;
+
 	/** @var \App\Model\Managers\UserManager @inject */
 	public $userManager;
 
@@ -66,6 +69,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	{
 		if ($this->passwordResetRow) {
 			$this->userManager->changePassword($this->passwordResetRow->user->id, $values->password);
+			$this->passwordResetRepository->delete($this->passwordResetRow->id);
 		}
 
 
