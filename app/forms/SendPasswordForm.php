@@ -3,6 +3,8 @@
 namespace App\Forms;
 
 use App\Model\Managers\UserManager;
+use App\Model\Repositories\PasswordResetRepository;
+use App\Model\Repositories\UserRepository;
 use Nette,
 	Nette\Application\UI\Form;
 use Nette\Mail\Message;
@@ -11,12 +13,23 @@ class SendPasswordForm extends BaseForm
 {
 	/* @var \App\Model\Managers\UserManager */
 	private $userManager;
+	/* @var \App\Model\Repositories\UserRepository */
+	private $userRepository;
+	/* @var \App\Model\Repositories\PasswordResetRepository */
+	private $passwordResetRepository;
 	/** @var Nette\Mail\IMailer  */
 	private $mailer;
 
-	public function __construct(UserManager $userManager, Nette\Mail\IMailer $mailer)
+	public function __construct(
+			UserManager $userManager,
+			UserRepository $userRepository,
+			PasswordResetRepository $passwordResetRepository,
+			Nette\Mail\IMailer $mailer
+	)
 	{
 		$this->userManager = $userManager;
+		$this->userRepository = $userRepository;
+		$this->passwordResetRepository = $passwordResetRepository;
 		$this->mailer = $mailer;
 	}
 
@@ -41,23 +54,30 @@ class SendPasswordForm extends BaseForm
 
 	public function formSucceeded($form, $values)
 	{
-		$user = $this->userManager->getByEmail($values->email);
+		$user = $this->userRepository->findOneBy([
+			'email' => $values->email
+		]);
 
 		if (!$user) {
 			$form->addError("User with email " . $values->email . " does not exist.");
 			return;
 		}
 
-		$appUniqueHash = $this->presenter->context->parameters['appUniqueHash'];
-		$pwdhash = Nette\Security\Passwords::hash($appUniqueHash, ['salt' => $user->public_hash]);
+		$hash = Nette\Utils\Random::generate(16);
+
+		$this->passwordResetRepository->replace([
+			"user_id" => $user->id,
+			"hash" => $hash,
+			"created" => new Nette\Utils\DateTime()
+		]);
 
 		$mail = new Message;
 		$mail->setFrom('info@myapp.com')
 			->addTo($values->email)
 			->setSubject('Reset password')
-			->setBody("Hello\n\nsomeone, probably you, asked for reset a password for account " . $values->email . ".
+			->setBody("Hello\n\nsomeone, probably you, asked for reset password for account " . $values->email . ".
 				To set new password, visit this link: \n\n "
-				. $this->presenter->link("Sign:password", ['userhash' => $user->public_hash, 'pwdhash' => $pwdhash]));
+				. $this->presenter->link("//Sign:in", ['newpasshash' => $hash]));
 		$this->mailer->send($mail);
 
 		$this->onFormSuccess($this);
