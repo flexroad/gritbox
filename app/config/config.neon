@@ -31,8 +31,8 @@ services:
 	- App\Model\Managers\UserManager
 
 	- App\Model\Repositories\UserRepository
+	- App\Model\Repositories\PasswordResetRepository
 
-	- App\Forms\ISignInFormFactory
 	- App\Forms\ISignUpFormFactory
 	- App\Forms\ISendPasswordFormFactory
 

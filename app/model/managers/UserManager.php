@@ -76,16 +76,11 @@ class UserManager extends BaseManager implements Nette\Security\IAuthenticator
 		}
 	}
 
-	public function getByEmail($email)
+	public function changePassword($userId, $password)
 	{
-		$user = $this->repository->findOneBy([
-			'email' => $email
+		$this->repository->update($userId, [
+			"password" => Passwords::hash($password),
 		]);
-		if ($user) {
-			return new UserEntity($user);
-		} else {
-			return false;
-		}
 	}
 
 }

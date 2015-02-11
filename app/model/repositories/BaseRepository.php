@@ -69,7 +69,18 @@ abstract class BaseRepository
 	public function insert($values)
 	{
 		$row = $this->getTable()->insert($values);
-		return $row->id;
+		return isset($row->id) ? $row->id : TRUE;
+
+	}
+
+	/**
+	 * @param int
+	 * @return int
+	 */
+	public function replace($values)
+	{
+		$row = $this->database->query("REPLACE " . $this->tableName . " SET ?", $values);
+		return isset($row->id) ? $row->id : TRUE;
 
 	}
 
@@ -79,9 +90,9 @@ abstract class BaseRepository
 	 */
 	public function update($id, $values)
 	{
-		$this->getTable()->update($values)->where([
+		$this->getTable()->where([
 			"id" => $id
-		]);
+		])->update($values);
 	}
 
 

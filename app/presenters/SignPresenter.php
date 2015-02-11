@@ -12,28 +12,34 @@ use Nette,
  */
 class SignPresenter extends BasePresenter
 {
-	/** @var \App\Forms\ISignInFormFactory @inject */
-	public $signInFormFactory;
-
 	/** @var \App\Forms\ISignUpFormFactory @inject */
 	public $signUpFormFactory;
 
 	/** @var \App\Forms\ISendPasswordFormFactory @inject */
 	public $sendPasswordFormFactory;
 
+	/** @var \App\Model\Repositories\PasswordResetRepository @inject */
+	public $passwordResetRepository;
 
-	/**
-	 * Sign-in form factory.
-	 * @return Nette\Application\UI\Form
-	 */
-	protected function createComponentSignInForm()
+	protected $passwordResetRow;
+
+
+	public function actionIn($newpasshash = "")
 	{
-		$form = $this->signInFormFactory->create();
-		$form->onFormSuccess[] = function ($form) {
-			$form->getPresenter()->redirect('Homepage:');
-		};
-		return $form;
+
+		if ($newpasshash) {
+			$this->passwordResetRow = $this->passwordResetRepository->findOneBy([
+				"hash" => $newpasshash
+			]);
+
+			if (!$this->passwordResetRow) {
+				$this->flashMessage("We are sorry, but this link is not valid. Maybe it is broken or expired.");
+			}
+		}
+
+
 	}
+
 
 
 	/**
