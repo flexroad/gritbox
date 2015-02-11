@@ -18,8 +18,6 @@ class SignPresenter extends BasePresenter
 	/** @var \App\Forms\ISendPasswordFormFactory @inject */
 	public $sendPasswordFormFactory;
 
-	/** @var \App\Model\Repositories\PasswordResetRepository @inject */
-	public $passwordResetRepository;
 
 	protected $passwordResetRow;
 
