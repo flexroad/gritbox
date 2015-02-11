@@ -85,14 +85,28 @@ abstract class BaseRepository
 	}
 
 	/**
-	 * @param int
+	 * @param $id
+	 * @param $values
 	 * @return int
+	 * @internal param $int
 	 */
 	public function update($id, $values)
 	{
 		$this->getTable()->where([
 			"id" => $id
 		])->update($values);
+	}
+
+	/**
+	 * @param $id
+	 * @return int
+	 * @internal param $int
+	 */
+	public function delete($id)
+	{
+		$this->getTable()->where([
+			"id" => $id
+		])->delete();
 	}
 
 
