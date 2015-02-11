@@ -54,6 +54,8 @@ Then run
 
 which will install CSS and JS libraires into `www/components` directory.
 
+Import basic database structure from `/database/database.sql` dump.
+
 License
 -------
 - Nette: New BSD License or GPL 2.0 or 3.0 (http://nette.org/license)
