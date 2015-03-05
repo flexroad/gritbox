@@ -19,3 +19,4 @@ composer.lock
 !.htaccess
 !web.config
 app/config/config.local.neon
+vendor/autoload.php
