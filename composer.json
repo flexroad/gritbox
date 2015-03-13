@@ -23,6 +23,5 @@
     },
 	"require-dev": {
 		"nette/tester": "~1.0"
-	},
-	"minimum-stability": "dev"
+	}
 }
