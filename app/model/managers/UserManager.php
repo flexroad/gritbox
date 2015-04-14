@@ -68,7 +68,6 @@ class UserManager extends BaseManager implements Nette\Security\IAuthenticator
 			$this->repository->insert([
 				"email" => $email,
 				"password" => Passwords::hash($password),
-				"public_hash" => Nette\Utils\Random::generate(22),
 				"name" => $name,
 			]);
 		} catch (Nette\Database\UniqueConstraintViolationException $e) {
