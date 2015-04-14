@@ -34,20 +34,20 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function handleLogOut()
 	{
 		$this->user->logout();
-		$this->redirect("Sign:in");
+		$this->redirect(":Front:Sign:in");
 	}
 
 
 	protected function mustBeLoggedIn()
 	{
 		if (!$this->getUser()->isLoggedIn()) {
-			$this->redirect('Sign:in');
+			$this->redirect(':Front:Sign:in');
 		}
 	}
 	protected function mustBeLoggedOut()
 	{
 		if ($this->getUser()->isLoggedIn()) {
-			$this->redirect('Homepage:default');
+			$this->redirect(':Admin:Homepage:default');
 		}
 	}
 
@@ -99,7 +99,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			return;
 		}
 
-		$this->redirect('Homepage:');
+		$this->redirect(':Admin:Homepage:default');
 	}
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\FrontModule\Presenters;
 
 use App\Forms\TemplateControl;
 use Nette,
@@ -10,7 +10,7 @@ use Nette,
 /**
  * Sign in/out presenters.
  */
-class SignPresenter extends BasePresenter
+class SignPresenter extends \App\Presenters\BasePresenter
 {
 	/** @var \App\Forms\ISignUpFormFactory @inject */
 	public $signUpFormFactory;
@@ -55,7 +55,7 @@ class SignPresenter extends BasePresenter
 	{
 		$form = $this->signUpFormFactory->create();
 		$form->onFormSuccess[] = function ($form) {
-			$form->getPresenter()->redirect('Sign:in');
+			$form->getPresenter()->redirect(':Front:Sign:in');
 		};
 		return $form;
 	}
@@ -68,7 +68,7 @@ class SignPresenter extends BasePresenter
 	{
 		$form = $this->sendPasswordFormFactory->create();
 		$form->onFormSuccess[] = function ($form) {
-			$form->getPresenter()->redirect('Homepage:');
+			$form->getPresenter()->redirect(':Front:Homepage:');
 		};
 		return $form;
 	}

@@ -49,17 +49,15 @@
 
 <body>
 
+	{block header}{/block}
 
-	{if $user->isLoggedIn()}
-		{include './@header.latte'}
-	{/if}
 	<div class="container">
 
 		<div class="topfix" data-topfix-offset="20">
 			<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
 		</div>
 
-		{include content}
+		{include moduleLayout}
 	</div>
 
 

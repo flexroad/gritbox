@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\AdminModule\Presenters;
 
 use Nette,
 	App\Model;
@@ -9,13 +9,8 @@ use Nette,
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BasePresenter
+class HomepagePresenter extends \App\Presenters\BasePresenter
 {
-	protected function startup()
-	{
-		parent::startup();
-		$this->mustBeLoggedIn();
-	}
 
 	public function renderDefault()
 	{
