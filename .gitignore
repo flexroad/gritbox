@@ -6,7 +6,6 @@ vendor/*
 node_modules/*
 www/components/*
 
-www/style/app.min.css
 www/style/main.css
 www/js/app.min.js
 .tmp/
@@ -18,5 +17,4 @@ composer.lock
 !.gitignore
 !.htaccess
 !web.config
-app/config/config.local.neon
 vendor/autoload.php
