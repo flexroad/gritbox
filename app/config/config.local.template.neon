@@ -1,5 +1,6 @@
 parameters:
-	development: true # this parameter has to be FALSE on production
+	developmentMode: true # this parameter has to be FALSE on production
+	assetVersion: 1 # increment after CSS or JS changes
 
 database:
 	dsn: 'mysql:host=localhost;dbname=gritbox_devel'

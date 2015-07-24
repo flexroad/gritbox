@@ -2,6 +2,7 @@
 
 namespace App\Presenters;
 
+use App\Components\HtmlHead;
 use Nette,
 	App\Model;
 use Nette\Application\UI\Form;
@@ -22,9 +23,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	/** @var \App\Model\Managers\UserManager @inject */
 	public $userManager;
 
+	/** @var \App\Components\HtmlHead @inject */
+	public $htmlHeadComponent;
+
 	protected function beforeRender()
 	{
-		$this->template->parameters = $this->context->parameters;
 	}
 
 	/*
@@ -102,5 +105,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->redirect(':Admin:Homepage:default');
 	}
 
+	/**
+	 * Html Head Component
+	 * @return \App\Components\HtmlHead
+	 */
+	protected function createComponentHtmlHead()
+	{
+		return $this->htmlHeadComponent;
+	}
 
 }

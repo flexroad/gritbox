@@ -3,8 +3,6 @@
 # http://nette.org/security-warning
 #
 parameters:
-	development: false
-	version: 1 # increase this number, if new release is pushed
 	appUniqueHash: "jHrC5j8V3HDTDx86+#&H109" # Change this hash for your app, 22 chars at least!
 
 php:
@@ -36,4 +34,7 @@ services:
 	- App\Forms\ISignUpFormFactory
 	- App\Forms\ISendPasswordFormFactory
 
+	- App\Components\HtmlHead(%developmentMode%, %assetVersion%)
+
 	router: App\RouterFactory::createRouter
+
