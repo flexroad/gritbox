@@ -4,6 +4,8 @@ Gritbox - a Nette project starter
 Gritbox is a pre-packaged and pre-configured Nette Framework application
 that you can use as the skeleton for your new applications.
 
+Goal is to create a skeleton with using best practices - DI, Services, Components, etc.
+
 It is based on these technologies:
 
 - PHP
