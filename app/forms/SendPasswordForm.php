@@ -17,20 +17,20 @@ class SendPasswordForm extends BaseForm
 	private $userRepository;
 	/* @var \App\Model\Repositories\PasswordResetRepository */
 	private $passwordResetRepository;
-	/** @var Nette\Mail\IMailer  */
-	private $mailer;
+	/** @var \App\Services\EmailService  */
+	private $emailService;
 
 	public function __construct(
 			UserManager $userManager,
 			UserRepository $userRepository,
 			PasswordResetRepository $passwordResetRepository,
-			Nette\Mail\IMailer $mailer
+			\App\Services\EmailService $emailService
 	)
 	{
 		$this->userManager = $userManager;
 		$this->userRepository = $userRepository;
 		$this->passwordResetRepository = $passwordResetRepository;
-		$this->mailer = $mailer;
+		$this->emailService = $emailService;
 	}
 
 	/**
@@ -71,14 +71,11 @@ class SendPasswordForm extends BaseForm
 			"created" => new Nette\Utils\DateTime()
 		]);
 
-		$mail = new Message;
-		$mail->setFrom('info@myapp.com')
-			->addTo($values->email)
-			->setSubject('Reset password')
-			->setBody("Hello\n\nsomeone, probably you, asked for reset password for account " . $values->email . ".
-				To set new password, visit this link: \n\n "
-				. $this->presenter->link("//Sign:in", ['newpasshash' => $hash]));
-		$this->mailer->send($mail);
+		$this->emailService->send($values->email, [
+			'email' => $values->email,
+			'resetUrl' => $this->presenter->link("//Sign:in", ['newpasshash' => $hash])
+		], 'passwordResetRequest.latte');
+
 
 		$this->onFormSuccess($this);
 

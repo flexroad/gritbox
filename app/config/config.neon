@@ -5,6 +5,11 @@
 parameters:
 	appUniqueHash: "jHrC5j8V3HDTDx86+#&H109" # Change this hash for your app, 22 chars at least!
 
+	emails:
+		templatesDir: %appDir%/templates/emails
+		fromAddress: 'weListen@myApp.com'
+		archiveAddress: ''
+
 php:
 	date.timezone: Europe/Prague
 
@@ -35,6 +40,8 @@ services:
 	- App\Forms\ISendPasswordFormFactory
 
 	- App\Components\HtmlHead(%developmentMode%, %assetVersion%)
+
+	- App\Services\EmailService(%emails.templatesDir%, %emails.archiveAddress%, %emails.fromAddress%)
 
 	router: App\RouterFactory::createRouter
 

@@ -21,7 +21,9 @@ Features
 
 - Basic user account managing: Login, Register, Reset password
 - Flashmessage UX (stay always visible)
-- Development:
+- Modules (Front, Admin)
+- Services: EmailService
+- Development tools:
 	- [MailPanel](https://github.com/repli2dev/nette-mailpanel)
 
 Installing
