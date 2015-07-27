@@ -9,6 +9,7 @@ abstract class BaseRepository
 	/** @var Nette\Database\Context */
 	private $database;
 
+	private $primaryKey;
 
 	public function __construct(\Nette\Database\Context $database)
 	{
@@ -16,6 +17,7 @@ abstract class BaseRepository
 		preg_match('#(\w+)Repository$#', get_class($this), $m);
 		$this->tableName = lcfirst($m[1]);
 		$this->database = $database;
+		$this->primaryKey = $this->getTable()->getPrimary();
 	}
 
 
@@ -69,7 +71,7 @@ abstract class BaseRepository
 	public function insert($values)
 	{
 		$row = $this->getTable()->insert($values);
-		return isset($row->id) ? $row->id : TRUE;
+		return isset($row->{$this->primaryKey}) ? $row->{$this->primaryKey} : TRUE;
 
 	}
 
@@ -80,7 +82,7 @@ abstract class BaseRepository
 	public function replace($values)
 	{
 		$row = $this->database->query("REPLACE " . $this->tableName . " SET ?", $values);
-		return isset($row->id) ? $row->id : TRUE;
+		return isset($row->{$this->primaryKey}) ? $row->{$this->primaryKey} : TRUE;
 
 	}
 
@@ -93,7 +95,7 @@ abstract class BaseRepository
 	public function update($id, $values)
 	{
 		$this->getTable()->where([
-			"id" => $id
+			$this->primaryKey => ${$this->primaryKey}
 		])->update($values);
 	}
 
@@ -105,7 +107,7 @@ abstract class BaseRepository
 	public function delete($id)
 	{
 		$this->getTable()->where([
-			"id" => $id
+			$this->primaryKey => ${$this->primaryKey}
 		])->delete();
 	}
 
