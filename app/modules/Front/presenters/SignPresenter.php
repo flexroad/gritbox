@@ -10,7 +10,7 @@ use Nette,
 /**
  * Sign in/out presenters.
  */
-class SignPresenter extends \App\Presenters\BasePresenter
+class SignPresenter extends BasePresenter
 {
 	/** @var \App\Forms\ISignUpFormFactory @inject */
 	public $signUpFormFactory;
