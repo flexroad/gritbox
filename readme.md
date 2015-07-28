@@ -20,6 +20,7 @@ Features
 --------
 
 - Basic user account managing: Login, Register, Reset password
+- ACL (Access Control List) defined in config.neon and annotations
 - Flashmessage UX (stay always visible)
 - Modules (Front, Admin)
 - Services: EmailService
