@@ -9,9 +9,11 @@ use Nette,
 
 /**
  * Sign in/out presenters.
+ * @resource Front:Sign
  */
 class SignPresenter extends BasePresenter
 {
+
 	/** @var \App\Forms\ISignUpFormFactory @inject */
 	public $signUpFormFactory;
 
@@ -20,13 +22,6 @@ class SignPresenter extends BasePresenter
 
 
 	protected $passwordResetRow;
-
-
-	protected function startup()
-	{
-		parent::startup();
-		$this->mustBeLoggedOut();
-	}
 
 
 	public function actionIn($newpasshash = "")
@@ -42,7 +37,6 @@ class SignPresenter extends BasePresenter
 			}
 		}
 
-
 	}
 
 
@@ -55,7 +49,7 @@ class SignPresenter extends BasePresenter
 	{
 		$form = $this->signUpFormFactory->create();
 		$form->onFormSuccess[] = function ($form) {
-			$form->getPresenter()->redirect(':Front:Sign:in');
+			$form->getPresenter()->redirect(':Admin:Sign:in');
 		};
 		return $form;
 	}

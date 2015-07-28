@@ -26,6 +26,37 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	/** @var \App\Components\HtmlHead @inject */
 	public $htmlHeadComponent;
 
+
+	/**
+	 * Check authorization
+	 * @return void
+	 */
+	public function checkRequirements($element)
+	{
+		if ($element instanceof Nette\Reflection\Method) {
+			/**
+			 * Check permissions for Action/handle methods
+			 *
+			 *  - Do not that (rely on presenter authorization)
+			 */
+			return;
+		} else {
+			$resource = $element->getAnnotation('resource');
+		}
+		if (!$this->user->isAllowed($resource)) {
+			if (!$this->user->isLoggedIn()) {
+				$this->redirect(':Front:Sign:in', ['backlink' => $this->storeRequest()]);
+			} else {
+				throw new Nette\Application\ForbiddenRequestException;
+			}
+		}
+
+		if ($this->user->isLoggedIn() && $resource == 'Front:Sign') {
+			$this->redirect(':Admin:Homepage:default');
+		}
+	}
+
+
 	protected function beforeRender()
 	{
 	}
@@ -39,22 +70,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->user->logout();
 		$this->redirect(":Front:Sign:in");
 	}
-
-
-	protected function mustBeLoggedIn()
-	{
-		if (!$this->getUser()->isLoggedIn()) {
-			$this->redirect(':Front:Sign:in');
-		}
-	}
-	protected function mustBeLoggedOut()
-	{
-		if ($this->getUser()->isLoggedIn()) {
-			$this->redirect(':Admin:Homepage:default');
-		}
-	}
-
-
 
 	/**
 	 * Html Head Component

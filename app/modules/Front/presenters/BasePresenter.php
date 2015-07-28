@@ -12,7 +12,6 @@ use Nette\Application\UI\Form;
 class BasePresenter extends \App\Presenters\BasePresenter
 {
 
-
 	/*
 	 * ===== FORMS ======
 	 */

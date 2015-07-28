@@ -8,6 +8,7 @@ use Nette,
 
 /**
  * Homepage presenter.
+ * @resource Front:Homepage
  */
 class HomepagePresenter extends BasePresenter
 {

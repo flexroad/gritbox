@@ -45,3 +45,17 @@ services:
 
 	router: App\RouterFactory::createRouter
 
+	authorizator:
+		class: Nette\Security\Permission
+		setup:
+			- addRole('guest')
+			- addRole('user')
+			- addRole('admin')
+			- addResource('Admin')
+			- addResource('Admin:Homepage', 'Admin')
+			- addResource('Front')
+			- addResource('Front:Sign', 'Front')
+			- addResource('Front:Homepage', 'Front')
+			- allow('guest', 'Front')
+			- allow('user')
+			- allow('admin')

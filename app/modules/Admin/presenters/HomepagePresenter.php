@@ -8,6 +8,7 @@ use Nette,
 
 /**
  * Homepage presenter.
+ * @resource Admin:Homepage
  */
 class HomepagePresenter extends \App\Presenters\BasePresenter
 {
