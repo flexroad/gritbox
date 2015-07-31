@@ -6,7 +6,7 @@ use Nette,
 	Nette\Application\UI;
 
 
-class HtmlHead extends UI\Control
+class HtmlAssets extends UI\Control
 {
 	private $developmentMode, $assetVersion, $basePath;
 
@@ -17,12 +17,13 @@ class HtmlHead extends UI\Control
 		$this->assetVersion = $assetVersion;
 	}
 
-	public function render()
+	public function render($type)
 	{
+		$this->template->type = $type;
 		$this->template->developmentMode = $this->developmentMode;
 		$this->template->assetVersion = $this->assetVersion;
 		$this->template->basePath = $this->basePath;
-		$this->template->render(__DIR__ . '/HtmlHead.latte');
+		$this->template->render(__DIR__ . '/HtmlAssets.latte');
 	}
 
 }

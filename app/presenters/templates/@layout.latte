@@ -5,10 +5,12 @@
 
 	<title>{ifset title}{include title|striptags} | {/ifset}Nette Sandbox</title>
 
-	{control htmlHead}
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
+	{control htmlAssets, 'css'}
 
 	{block head}{/block}
 </head>
@@ -27,6 +29,7 @@
 	</div>
 
 
+	{control htmlAssets, 'js'}
 
 	{block scripts}
 

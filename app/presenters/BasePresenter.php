@@ -23,8 +23,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	/** @var \App\Model\Managers\UserManager @inject */
 	public $userManager;
 
-	/** @var \App\Components\HtmlHead @inject */
-	public $htmlHeadComponent;
+	/** @var \App\Components\HtmlAssets @inject */
+	public $htmlAssetsComponent;
 
 
 	/**
@@ -75,9 +75,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 * Html Head Component
 	 * @return \App\Components\HtmlHead
 	 */
-	protected function createComponentHtmlHead()
+	protected function createComponentHtmlAssets()
 	{
-		return $this->htmlHeadComponent;
+		return $this->htmlAssetsComponent;
 	}
 
 }

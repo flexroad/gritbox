@@ -39,7 +39,7 @@ services:
 	- App\Forms\ISignUpFormFactory
 	- App\Forms\ISendPasswordFormFactory
 
-	- App\Components\HtmlHead(%developmentMode%, %assetVersion%)
+	- App\Components\HtmlAssets(%developmentMode%, %assetVersion%)
 
 	- App\Services\EmailService(%emails.templatesDir%, %emails.archiveAddress%, %emails.fromAddress%)
 

@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   grunt.initConfig
     useminPrepare:
-      html: ['app/presenters/templates/@layout.latte']
+      html: ['app/components/HtmlAssets/HtmlAssets.latte']
       options:
         dest: '.'
 
