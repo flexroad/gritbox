@@ -49,7 +49,7 @@ class SignPresenter extends BasePresenter
 	{
 		$form = $this->signUpFormFactory->create();
 		$form->onFormSuccess[] = function ($form) {
-			$form->getPresenter()->redirect(':Admin:Sign:in');
+			$form->getPresenter()->redirect(':Front:Sign:in');
 		};
 		return $form;
 	}
