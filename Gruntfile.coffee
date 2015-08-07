@@ -8,7 +8,7 @@ module.exports = (grunt) ->
     netteBasePath:
       basePath: 'www'
       options:
-        removeFromPath: ['app/presenters/templates/']
+        removeFromPath: ['app/components/HtmlAssets/']
 
     less:
       development:
