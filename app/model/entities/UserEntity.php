@@ -17,7 +17,4 @@ class UserEntity extends BaseEntity
 	/** @var string */
 	public $role;
 
-	/** @var string */
-	public $public_hash;
-
 }
